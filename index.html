@@ -126,6 +126,13 @@
       background-color: rgba(0, 0, 0, 0.5);
       visibility: visible;
       z-index: 999999;
+      background-image: url('https://assets-news.housing.com/news/wp-content/uploads/2023/03/24164159/Colours-of-Holi-What-is-the-significance-of-different-colours-f.jpg');
+      /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.8;
+      /* Apply opacity to the background */
+      z-index: -1;
     }
 
     .button {
@@ -171,7 +178,7 @@
       /* Replace with your image URL */
       background-size: cover;
       background-position: center;
-      opacity: 0.5;
+      opacity: 0.8;
       /* Apply opacity to the background */
       z-index: -1;
       /* Ensures that the background stays behind the content */
@@ -186,7 +193,7 @@
 <body>
   <div>
     <div id="startContainer" class="container" onclick="startAR()">
-      <h1 id="startText">Tap to Start</h1>
+      <h1 id="startText" style="opacity: 1;">Tap to Start</h1>
     </div>
   </div>
 
