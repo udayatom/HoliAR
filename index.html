@@ -11,15 +11,15 @@
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NCYPNF5Z42"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCYPNF5Z42"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-NCYPNF5Z42');
-</script>
+    gtag('config', 'G-NCYPNF5Z42');
+  </script>
   <style>
     body {
       margin: 0;
@@ -109,6 +109,34 @@
       z-index: 9999;
     }
 
+
+    .bg {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      /* Ensures the background stays behind everything else */
+    }
+
+    .bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://assets-news.housing.com/news/wp-content/uploads/2023/03/24164159/Colours-of-Holi-What-is-the-significance-of-different-colours-f.jpg');
+      /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5;
+      /* Apply opacity to the background */
+      z-index: -1;
+      /* Ensures that the background stays behind the content */
+    }
+
     .container {
       height: 100%;
       width: 100%;
@@ -117,16 +145,11 @@
       position: relative;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.5);
+      /* Keep your container's background */
       visibility: visible;
-      z-index: 999999;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-
-    }
-
-    .bg {
-      background-image: url("https://assets-news.housing.com/news/wp-content/uploads/2023/03/24164159/Colours-of-Holi-What-is-the-significance-of-different-colours-f.jpg");
-      opacity: 0.5;
     }
 
     .button {
