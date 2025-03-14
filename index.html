@@ -130,7 +130,7 @@
       /* Replace with your image URL */
       background-size: cover;
       background-position: center;
-      opacity: 0.7; 
+      opacity: 0.7;
     }
 
     .button {
@@ -185,13 +185,31 @@
     h1 {
       color: whitesmoke;
     }
+
+    .green-stork {
+      font-size: 40px;
+      /* Text size */
+      color: white;
+      /* Text color */
+      font-weight: bold;
+      /* Text weight */
+      text-shadow:
+        2px 2px 0 green,
+        /* Bottom-right shadow */
+        -2px -2px 0 green,
+        /* Top-left shadow */
+        2px -2px 0 green,
+        /* Top-right shadow */
+        -2px 2px 0 green;
+      /* Bottom-left shadow */
+    }
   </style>
 </head>
 
 <body>
   <div>
     <div id="startContainer" class="container" onclick="startAR()">
-      <h1 id="startText">Tap to Start</h1>
+      <h1 id="startText" class="green-stork">Tap to Start</h1>
     </div>
   </div>
 
