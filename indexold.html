@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -10,7 +11,6 @@
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCYPNF5Z42"></script>
   <script>
@@ -26,11 +26,6 @@
       text-align: center;
       font-family: 'Poppins';
       font-size: 20px;
-    }
-
-    body {
-      margin: 0;
-      text-align: center;
     }
 
     .example-container {
@@ -73,9 +68,7 @@
       justify-content: center;
       position: relative;
       opacity: 0.75;
-
-      background:
-        linear-gradient(to right, white 10px, transparent 10px) 0 0,
+      background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
         linear-gradient(to right, white 10px, transparent 10px) 0 100%,
         linear-gradient(to left, white 10px, transparent 10px) 100% 0,
         linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
@@ -116,39 +109,6 @@
       z-index: 9999;
     }
 
-    .container {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      position: relative;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      visibility: visible;
-      z-index: 999999;
-    }
-
-    .button {
-      background-color: #04AA6D;
-      padding: 10px 20px;
-      /* padding inside the button */
-      background-color: #4CAF50;
-      /* background color */
-      color: white;
-      /* text color */
-      border: none;
-      /* remove default border */
-      border-radius: 12px;
-      /* rounded corners */
-      font-size: 16px;
-      /* font size */
-      cursor: pointer;
-      /* cursor to indicate it's clickable */
-      transition: background-color 0.3s ease;
-      /* smooth transition for hover effect*/
-      border-radius: 12px;
-
-    }
 
     .bg {
       position: relative;
@@ -177,6 +137,43 @@
       /* Ensures that the background stays behind the content */
     }
 
+    .container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Keep your container's background */
+      visibility: visible;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .button {
+      background-color: #04AA6D;
+      padding: 10px 20px;
+      /* padding inside the button */
+      background-color: #4CAF50;
+      /* background color */
+      color: white;
+      /* text color */
+      border: none;
+      /* remove default border */
+      border-radius: 12px;
+      /* rounded corners */
+      font-size: 16px;
+      /* font size */
+      cursor: pointer;
+      /* cursor to indicate it's clickable */
+      transition: background-color 0.3s ease;
+      /* smooth transition for hover effect*/
+      border-radius: 12px;
+
+    }
+
     h1 {
       color: whitesmoke;
     }
@@ -185,18 +182,19 @@
 
 <body>
   <div class="bg">
-    <div id="startContainer" class="container" onclick="startAR()">
-      <button class="button">Continue</button>
-      <!-- <h1 id="startText">Tap to Start</h1> -->
+    <div id="startContainer" class="container">
+      <img src="./assets/google.png" />
+      <div class="scanline"></div>
+      <h1 id="startText">Scan the google webpage</h1><br><br>
+      <!-- <h1 id="startText">Tap to the screen to continue</h1> -->
+      <button class="button" onclick="startAR()">Continue</button>
     </div>
   </div>
 
   <div class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
-        <h3 id="scanText">Scan the google webpage</h3>
-        <img src="./assets/google.png" />
-        <div class="scanline"></div>
+        <h3 id="scanText">Scan this image to get started</h3>
       </div>
     </div>
     <img id="cameraNotPermitted" src="./assets/CameraNotPermitted.png" />
@@ -208,31 +206,37 @@
       xr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
       <a-assets>
-        <!-- Load the GIF image as a texture -->
-        <video id="greenscreenvideo" opacity="0" loop="true" playsinline webkit-playsinline muted="true"
-          crossorigin="anonymous"
+        <!-- Load the video as a texture -->
+        <video id="greenscreenvideo" opacity="0" loop="true" autoplay playsinline webkit-playsinline
+          crossorigin="anonymous" muted="true"
           src="https://static.vecteezy.com/system/resources/previews/020/984/573/mp4/happy-holi-handwritten-text-hand-lettering-modern-brush-ink-calligraphy-festival-of-colors-theme-vector-illustration-free-video.mp4"></video>
-      </a-assets>
-
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
         raycaster="far: 50; objects: .clickable"></a-camera>
 
       <a-entity id="aentity" mytarget mindar-image-target="targetIndex: 0" class="clickable">
-        <!-- Use the GIF texture on a plane -->
+        <!-- Use the video texture on a plane -->
         <a-video material="shader: chromakey; src: #greenscreenvideo; color: 0.1 0.9 0.2" position="0 0 0"
           rotation="0 0 0" scale="1 1 1"></a-video>
       </a-entity>
+
     </a-scene>
   </div>
 
   <script>
     const sceneEl = document.querySelector('a-scene');
     let arSystem;
+
     sceneEl.addEventListener('loaded', function () {
       arSystem = sceneEl.systems["mindar-image-system"];
       console.log('Loaded');
+
+      // Play the video as soon as the AR system is loaded
+      const videoElement = document.querySelector('#greenscreenvideo');
+      if (videoElement) {
+        videoElement.play();
+      }
     });
 
     // Camera permission check
@@ -251,27 +255,17 @@
       document.getElementById('startContainer').style.display = "none";
     }
 
+    // Handle target found/lost
     AFRAME.registerComponent('mytarget', {
       init: function () {
         this.el.addEventListener('targetFound', event => {
           console.log("Target found");
           document.getElementById('example-scanning-overlay').style.display = 'none';
           document.getElementById('scanText').style.display = 'none';
-
-          // Play the video when the target is found
-          let video = document.getElementById('greenscreenvideo');
-          video.muted = false;  // Unmute the video
-          video.play();         // Ensure playback is triggered
         });
-
         this.el.addEventListener('targetLost', event => {
           console.log("Target lost");
           document.getElementById('example-scanning-overlay').style.display = 'flex';
-
-          // Pause the video when the target is lost
-          let video = document.getElementById('greenscreenvideo');
-          video.pause();
-          video.currentTime = 0;  // Reset to the start
         });
       }
     });
